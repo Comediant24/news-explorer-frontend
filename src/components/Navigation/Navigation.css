@@ -1,0 +1,58 @@
+.navbar__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 133%;
+}
+
+.navbar__link {
+  color: white;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 133%;
+  text-decoration: none;
+}
+
+.navbar__link_black {
+  color: black;
+}
+
+.navbar__link_select {
+  border-bottom: 3px solid #ffffff;
+  padding-bottom: 17px;
+}
+
+.navbar__link_select_black {
+  border-color: #000000;
+}
+
+.navbar__btn {
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 100px;
+  padding: 12px;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.navbar__btn_black {
+  border-color: #000000;
+}
+
+.navbar__btn-logout {
+  fill: white;
+}
+
+.navbar__btn-logout_black {
+  fill: black;
+}
