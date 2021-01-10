@@ -176,7 +176,6 @@
 
   .navbar__btn {
     width: 100%;
-    max-width: 288px;
     height: 56px;
     justify-content: center;
   }
@@ -191,6 +190,7 @@
     width: 100%;
     opacity: 0;
     visibility: hidden;
+    z-index: 1;
   }
 
   .navbar__hover_active {

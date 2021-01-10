@@ -4,8 +4,6 @@ import { ReactComponent as Logout } from '../../images/exit.svg';
 import { NavLink } from 'react-router-dom';
 
 const Navigation = ({ loggedIn, location, onClick, clicked }) => {
-  loggedIn = true;
-
   const handleClick = () => {
     onClick();
   };
