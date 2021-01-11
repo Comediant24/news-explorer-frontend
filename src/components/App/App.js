@@ -13,7 +13,7 @@ function App() {
       <Header loggedIn={loggedIn} location={pathname} />
       <Switch>
         <Route exact path="/">
-          <Main />
+          <Main location={pathname} />
         </Route>
       </Switch>
     </div>
