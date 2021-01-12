@@ -126,9 +126,20 @@
   color: #b6bcbf;
 }
 
+@media screen and (max-width: 1050px) {
+  .newscard__help {
+    top: 45px;
+    right: calc(100% - 40px);
+  }
+}
+
 @media screen and (max-width: 900px) {
   .newscard {
     height: 420px;
+  }
+
+  .newscard__button:hover .newscard__help {
+    visibility: hidden;
   }
 
   .newscard__image {
@@ -144,6 +155,11 @@
     font-size: 22px;
     line-height: 24px;
     margin-bottom: 10px;
+  }
+
+  .newscard__button {
+    top: 8px;
+    right: 8px;
   }
 }
 
@@ -163,7 +179,13 @@
   .newscard__title {
     line-height: 26px;
   }
+
   .newscard__date {
     margin-bottom: 10px;
+  }
+
+  .newscard__button {
+    top: 16px;
+    right: 16px;
   }
 }
