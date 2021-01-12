@@ -11,6 +11,10 @@
   flex-direction: column;
 }
 
+.newslist__container_saved {
+  padding: 62px 104px;
+}
+
 .newslist__title {
   font-family: Roboto Slab;
   font-style: normal;
@@ -20,6 +24,10 @@
   color: #1a1b22;
   margin-top: 0;
   margin-bottom: 64px;
+}
+
+.newslist__title_hidden {
+  display: none;
 }
 
 .newslist__list {
@@ -52,9 +60,17 @@
   cursor: pointer;
 }
 
+.newslist__button_hidden {
+  display: none;
+}
+
 @media screen and (max-width: 900px) {
   .newslist__container {
     padding: 40px;
+  }
+
+  .newslist__container_saved {
+    padding: 32px 40px;
   }
 
   .newslist__title {
@@ -81,6 +97,10 @@
 @media screen and (max-width: 550px) {
   .newslist__container {
     padding: 32px 16px;
+  }
+
+  .newslist__container_saved {
+    padding: 24px 16px;
   }
 
   .newslist__title {

@@ -1,7 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ReactComponent as Bookmark } from '../../images/bookmark.svg';
+import { ReactComponent as BookmarkIcon } from '../../images/bookmark.svg';
+import { ReactComponent as DeleteIcon } from '../../images/trash.svg';
 import './NewsCard.css';
-const NewsCard = ({ title, image, date, description, source }) => {
+const NewsCard = ({
+  location,
+  title,
+  image,
+  date,
+  description,
+  source,
+  tag,
+}) => {
   const convertDate = (newsDate) => {
     const publishDate = new Date(newsDate);
     return `${publishDate.toLocaleString('ru', {
@@ -11,7 +20,6 @@ const NewsCard = ({ title, image, date, description, source }) => {
   };
 
   const [heightTitle, setHeightTitle] = useState(0);
-  console.log('heightTitle', heightTitle);
   const titleRef = useRef();
 
   useEffect(() => {
@@ -31,8 +39,19 @@ const NewsCard = ({ title, image, date, description, source }) => {
   return (
     <div className="newscard">
       <div className="newscard__button">
-        <Bookmark className="newscard__button-icon newscard__button-icon_bookmark" />
-        <div className="newscard__help">Войдите, чтобы сохранять статьи </div>
+        {location === '/' ? (
+          <>
+            <BookmarkIcon className="newscard__button-icon newscard__button-icon_bookmark" />
+            <div className="newscard__help">
+              Войдите, чтобы сохранять статьи
+            </div>
+          </>
+        ) : (
+          <>
+            <DeleteIcon className="newscard__button-icon newscard__button-icon_delete" />
+            <div className="newscard__help newscard__help_saved">{tag}</div>
+          </>
+        )}
       </div>
       <img className="newscard__image" src={image} alt={title}></img>
       <div className="newscard__content">
