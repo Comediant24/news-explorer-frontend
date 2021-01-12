@@ -11,6 +11,7 @@
 .header__white {
   color: black;
   background-color: white;
+  box-shadow: inset 0px -1px 0px #d1d2d6;
 }
 
 .header__container {
