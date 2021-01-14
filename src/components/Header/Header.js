@@ -3,24 +3,28 @@ import './Header.css';
 import { Link } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 
-const Header = ({ loggedIn, location }) => {
-  const [clicked, setClicked] = useState(false);
+const Header = ({ loggedIn, location, handleClick }) => {
+  const [clickedMenu, setClickedMenu] = useState(false);
 
-  const handleClick = () => {
-    setClicked(!clicked);
+  const handleClickMenu = () => {
+    setClickedMenu(!clickedMenu);
+  };
+
+  const handleCloseClick = () => {
+    setClickedMenu(false);
   };
 
   return (
     <header
       className={`header ${location === '/saved-news' ? 'header__white' : ''} ${
-        clicked ? 'header_dark' : ''
+        clickedMenu ? 'header_dark' : ''
       }`}
     >
       <div className="header__container">
         <Link
           to="/"
           className={`header__link header__link_main ${
-            clicked
+            clickedMenu
               ? ''
               : location === '/saved-news'
               ? 'header__link_black'
@@ -32,8 +36,10 @@ const Header = ({ loggedIn, location }) => {
         <Navigation
           loggedIn={loggedIn}
           location={location}
-          onClick={handleClick}
-          clicked={clicked}
+          clickedMenu={clickedMenu}
+          handleClickAuth={handleClick}
+          handleClickMenu={handleClickMenu}
+          handleCloseClick={handleCloseClick}
         />
       </div>
     </header>

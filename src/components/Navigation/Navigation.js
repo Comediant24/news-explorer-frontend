@@ -3,11 +3,14 @@ import './Navigation.css';
 import { ReactComponent as Logout } from '../../images/exit.svg';
 import { NavLink } from 'react-router-dom';
 
-const Navigation = ({ loggedIn, location, onClick, clicked }) => {
-  const handleClick = () => {
-    onClick();
-  };
-
+const Navigation = ({
+  loggedIn,
+  location,
+  handleClickMenu,
+  clickedMenu,
+  handleClickAuth,
+  handleCloseClick,
+}) => {
   const blackClass = {
     link: 'navbar__link_black',
     selectLink: 'navbar__link_select_black',
@@ -18,10 +21,10 @@ const Navigation = ({ loggedIn, location, onClick, clicked }) => {
 
   return (
     <nav className="navbar">
-      <div className="navbar__menu-icon" onClick={handleClick}>
+      <div className="navbar__menu-icon" onClick={handleClickMenu}>
         <span
           className={`navbar__menu-icon-item ${
-            clicked
+            clickedMenu
               ? 'navbar__menu-icon-item_active'
               : location === '/saved-news'
               ? blackClass.menuIcon
@@ -32,18 +35,23 @@ const Navigation = ({ loggedIn, location, onClick, clicked }) => {
 
       <ul
         className={
-          clicked ? 'navbar__list navbar__list_active' : 'navbar__list'
+          clickedMenu ? 'navbar__list navbar__list_active' : 'navbar__list'
         }
       >
         <li className="navbar__list-item">
           <NavLink
+            onClick={handleCloseClick}
             exact
             to="/"
             activeClassName={`navbar__link_select ${
               location === '/saved-news' ? blackClass.selectLink : ''
             }`}
             className={`navbar__link ${
-              clicked ? '' : location === '/saved-news' ? blackClass.link : ''
+              clickedMenu
+                ? ''
+                : location === '/saved-news'
+                ? blackClass.link
+                : ''
             }`}
           >
             Главная
@@ -52,17 +60,22 @@ const Navigation = ({ loggedIn, location, onClick, clicked }) => {
         {loggedIn ? (
           <li className="navbar__list-item">
             <NavLink
+              onClick={handleCloseClick}
               exact
               to="/saved-news"
               activeClassName={`navbar__link_select ${
-                clicked
+                clickedMenu
                   ? ''
                   : location === '/saved-news'
                   ? blackClass.selectLink
                   : ''
               }`}
               className={`navbar__link ${
-                clicked ? '' : location === '/saved-news' ? blackClass.link : ''
+                clickedMenu
+                  ? ''
+                  : location === '/saved-news'
+                  ? blackClass.link
+                  : ''
               }`}
             >
               Сохраненные статьи
@@ -74,9 +87,10 @@ const Navigation = ({ loggedIn, location, onClick, clicked }) => {
         <li className="navbar__list-item">
           {loggedIn ? (
             <button
+              onClick={handleClickAuth}
               arial-label="Выйти из аккаунта"
               className={`navbar__link navbar__btn ${
-                clicked
+                clickedMenu
                   ? ''
                   : location === '/saved-news'
                   ? blackClass.link + ' ' + blackClass.btn
@@ -86,7 +100,7 @@ const Navigation = ({ loggedIn, location, onClick, clicked }) => {
               UserName
               <Logout
                 className={`navbar__btn-logout ${
-                  clicked
+                  clickedMenu
                     ? ''
                     : location === '/saved-news'
                     ? blackClass.btnLogout
@@ -96,9 +110,10 @@ const Navigation = ({ loggedIn, location, onClick, clicked }) => {
             </button>
           ) : (
             <button
+              onClick={handleClickAuth}
               arial-label="Залогиниться"
               className={`navbar__link navbar__btn ${
-                clicked
+                clickedMenu
                   ? ''
                   : location === '/saved-news'
                   ? blackClass.link + ' ' + blackClass.btn
@@ -112,7 +127,7 @@ const Navigation = ({ loggedIn, location, onClick, clicked }) => {
       </ul>
       <div
         className={
-          clicked ? 'navbar__hover navbar__hover_active' : 'navbar__hover'
+          clickedMenu ? 'navbar__hover navbar__hover_active' : 'navbar__hover'
         }
       ></div>
     </nav>

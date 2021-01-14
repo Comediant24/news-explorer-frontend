@@ -8,11 +8,19 @@ import './App.css';
 
 function App() {
   const { pathname } = useLocation();
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const handleClick = () => {
+    setLoggedIn(!loggedIn);
+  };
 
   return (
     <div className="app">
-      <Header loggedIn={loggedIn} location={pathname} />
+      <Header
+        loggedIn={loggedIn}
+        location={pathname}
+        handleClick={handleClick}
+      />
       <Switch>
         <Route exact path="/">
           <Main location={pathname} />
