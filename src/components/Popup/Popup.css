@@ -23,6 +23,29 @@
   background-color: #00000080;
 }
 
+.popup__container {
+  z-index: 1;
+  background: #ffffff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  padding: 34px 36px 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 430px;
+  box-sizing: border-box;
+}
+
+.popup__title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 28px;
+  color: #1a1b22;
+  margin: 0;
+}
+
 .popup_opened {
   visibility: visible;
   opacity: 1;
@@ -35,5 +58,13 @@
 
   .popup__overlay {
     display: none;
+  }
+
+  .popup__container {
+    width: 100%;
+    height: 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 16px 16px 0;
   }
 }

@@ -35,11 +35,15 @@ const RegisterPopup = ({ isOpen, onClose, handlePopup }) => {
   };
 
   return (
-    <Popup name="register" isOpen={isOpen} onClose={onClose}>
+    <Popup
+      name="register"
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Регистрация"
+    >
       <PopupWithForm
         ref={valid}
         name="register"
-        title="Регистрация"
         onClose={onClose}
         onSubmit={handleSubmit}
         isValid={isValid}

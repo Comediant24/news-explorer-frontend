@@ -35,11 +35,10 @@ const LoginPopup = ({ isOpen, onClose, handlePopup }) => {
   };
 
   return (
-    <Popup name="login" isOpen={isOpen} onClose={onClose}>
+    <Popup name="login" isOpen={isOpen} onClose={onClose} title="Вход">
       <PopupWithForm
         ref={valid}
         name="login"
-        title="Вход"
         onClose={onClose}
         onSubmit={handleSubmit}
         isValid={isValid}

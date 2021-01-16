@@ -25,7 +25,6 @@ const PopupWithForm = forwardRef(
         onSubmit={onSubmit}
         noValidate
       >
-        <h3 className="popup__title">{title}</h3>
         <fieldset className="popup__input-container">{children}</fieldset>
         <button
           className={`button popup__submit-button ${

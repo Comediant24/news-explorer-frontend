@@ -1,24 +1,7 @@
 .popup__form {
-  z-index: 1;
-  background: #ffffff;
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
-  border-radius: 16px;
-  padding: 34px 36px 28px;
   display: flex;
   flex-direction: column;
-  position: relative;
-  width: 430px;
-  box-sizing: border-box;
-}
-
-.popup__title {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 28px;
-  color: #1a1b22;
-  margin: 0;
+  width: 100%;
 }
 
 .popup__input-container {
