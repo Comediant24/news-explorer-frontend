@@ -199,3 +199,9 @@
     visibility: visible;
   }
 }
+
+@media screen and (max-width: 550px) {
+  .navbar__menu-icon_hidden {
+    display: none;
+  }
+}

@@ -1,9 +1,10 @@
 import React, { createRef, useEffect } from 'react';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
-import PopupInput from '../PopupInput/PopupInput';
+import Popup from '../Popup/Popup';
 import PopupWithForm from '../PopupWithForm/PopupWithForn';
+import PopupInput from '../PopupInput/PopupInput';
 
-function LoginPopup({ isOpen, onClose, handlePopup }) {
+const LoginPopup = ({ isOpen, onClose, handlePopup }) => {
   const valid = createRef();
   const {
     values,
@@ -34,44 +35,45 @@ function LoginPopup({ isOpen, onClose, handlePopup }) {
   };
 
   return (
-    <PopupWithForm
-      ref={valid}
-      name="login"
-      title="Вход"
-      isOpen={isOpen}
-      onClose={onClose}
-      onSubmit={handleSubmit}
-      isValid={isValid}
-      buttonText="Войти"
-      switchPopupOpen={handleSwitchPopup}
-    >
-      <PopupInput
-        value={values.email}
-        titleForm="Email"
-        id="email-login"
-        changeValue={handleChange}
-        name="email"
-        type="email"
-        placeholder="Ваше имя"
-        required
-        autoComplete="off"
-        validationMessage={errors.email}
-      />
-      <PopupInput
-        value={values.password}
-        titleForm="Пароль"
-        id="password-login"
-        changeValue={handleChange}
-        name="password"
-        type="password"
-        placeholder="Пароль"
-        required
-        minLength="6"
-        autoComplete="off"
-        validationMessage={errors.password}
-      />
-    </PopupWithForm>
+    <Popup name="login" isOpen={isOpen} onClose={onClose}>
+      <PopupWithForm
+        ref={valid}
+        name="login"
+        title="Вход"
+        onClose={onClose}
+        onSubmit={handleSubmit}
+        isValid={isValid}
+        buttonText="Войти"
+        switchPopupOpen={handleSwitchPopup}
+      >
+        <PopupInput
+          value={values.email}
+          titleForm="Email"
+          id="email-login"
+          changeValue={handleChange}
+          name="email"
+          type="email"
+          placeholder="Ваше имя"
+          required
+          autoComplete="off"
+          validationMessage={errors.email}
+        />
+        <PopupInput
+          value={values.password}
+          titleForm="Пароль"
+          id="password-login"
+          changeValue={handleChange}
+          name="password"
+          type="password"
+          placeholder="Пароль"
+          required
+          minLength="6"
+          autoComplete="off"
+          validationMessage={errors.password}
+        />
+      </PopupWithForm>
+    </Popup>
   );
-}
+};
 
 export default LoginPopup;
