@@ -96,7 +96,6 @@ const Navigation = ({
           {loggedIn ? (
             <button
               onClick={onClickOut}
-              arial-label="Выйти из аккаунта"
               className={`navbar__link navbar__btn ${
                 clickedMenu
                   ? ''
@@ -119,7 +118,6 @@ const Navigation = ({
           ) : (
             <button
               onClick={authButtonClick}
-              arial-label="Залогиниться"
               className={`navbar__link navbar__btn ${
                 clickedMenu
                   ? ''

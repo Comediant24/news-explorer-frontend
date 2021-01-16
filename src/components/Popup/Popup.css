@@ -67,4 +67,9 @@
     border-bottom-right-radius: 0;
     padding: 16px 16px 0;
   }
+
+  .popup__close-icon {
+    width: 24px;
+    height: 24px;
+  }
 }
