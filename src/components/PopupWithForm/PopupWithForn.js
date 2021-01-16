@@ -1,19 +1,9 @@
 import React, { forwardRef } from 'react';
-import { ReactComponent as CLoseIcon } from '../../images/close-icon.svg';
 import './PopupWithForm.css';
 
 const PopupWithForm = forwardRef(
   (
-    {
-      isValid = true,
-      name,
-      title,
-      children,
-      onClose,
-      onSubmit,
-      buttonText,
-      switchPopupOpen,
-    },
+    { isValid = true, name, children, onSubmit, buttonText, switchPopupOpen },
     ref
   ) => {
     return (
@@ -41,14 +31,6 @@ const PopupWithForm = forwardRef(
             {name === 'login' ? 'Зарегистрироваться' : 'Войти'}
           </span>
         </p>
-        <button
-          className={`button popup__close-button`}
-          onClick={onClose}
-          type="button"
-          aria-label="Закрыть окно"
-        >
-          <CLoseIcon className="popup__close-icon" />
-        </button>
       </form>
     );
   }
