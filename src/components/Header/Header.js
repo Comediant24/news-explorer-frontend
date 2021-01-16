@@ -3,7 +3,13 @@ import './Header.css';
 import { Link } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 
-const Header = ({ loggedIn, location, handleClick }) => {
+const Header = ({
+  loggedIn,
+  location,
+  handleClick,
+  onRegister,
+  isPopupOpen,
+}) => {
   const [clickedMenu, setClickedMenu] = useState(false);
 
   const handleClickMenu = () => {
@@ -40,6 +46,8 @@ const Header = ({ loggedIn, location, handleClick }) => {
           handleClickAuth={handleClick}
           handleClickMenu={handleClickMenu}
           handleCloseClick={handleCloseClick}
+          onRegister={onRegister}
+          isPopupOpen={isPopupOpen}
         />
       </div>
     </header>

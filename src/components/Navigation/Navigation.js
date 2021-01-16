@@ -1,6 +1,6 @@
 import React from 'react';
 import './Navigation.css';
-import { ReactComponent as Logout } from '../../images/exit.svg';
+import { ReactComponent as LogoutIcon } from '../../images/exit.svg';
 import { NavLink } from 'react-router-dom';
 
 const Navigation = ({
@@ -10,6 +10,8 @@ const Navigation = ({
   clickedMenu,
   handleClickAuth,
   handleCloseClick,
+  onRegister,
+  isPopupOpen,
 }) => {
   const blackClass = {
     link: 'navbar__link_black',
@@ -19,6 +21,10 @@ const Navigation = ({
     menuIcon: 'navbar__menu-icon-item_dark',
   };
 
+  const authButtonClick = () => {
+    handleClickAuth();
+    onRegister();
+  };
   return (
     <nav className="navbar">
       <div className="navbar__menu-icon" onClick={handleClickMenu}>
@@ -29,7 +35,7 @@ const Navigation = ({
               : location === '/saved-news'
               ? blackClass.menuIcon
               : ''
-          } `}
+          } ${isPopupOpen() ? 'navbar__menu-icon_hidden' : ''}`}
         ></span>
       </div>
 
@@ -98,7 +104,7 @@ const Navigation = ({
               }`}
             >
               UserName
-              <Logout
+              <LogoutIcon
                 className={`navbar__btn-logout ${
                   clickedMenu
                     ? ''
@@ -110,7 +116,7 @@ const Navigation = ({
             </button>
           ) : (
             <button
-              onClick={handleClickAuth}
+              onClick={authButtonClick}
               arial-label="Залогиниться"
               className={`navbar__link navbar__btn ${
                 clickedMenu
