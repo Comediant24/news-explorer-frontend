@@ -12,6 +12,7 @@ const Navigation = ({
   handleCloseClick,
   onRegister,
   isPopupOpen,
+  onClickOut,
 }) => {
   const blackClass = {
     link: 'navbar__link_black',
@@ -25,6 +26,7 @@ const Navigation = ({
     handleClickAuth();
     onRegister();
   };
+
   return (
     <nav className="navbar">
       <div className="navbar__menu-icon" onClick={handleClickMenu}>
@@ -93,7 +95,7 @@ const Navigation = ({
         <li className="navbar__list-item">
           {loggedIn ? (
             <button
-              onClick={handleClickAuth}
+              onClick={onClickOut}
               arial-label="Выйти из аккаунта"
               className={`navbar__link navbar__btn ${
                 clickedMenu

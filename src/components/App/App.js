@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Route, Switch, useLocation } from 'react-router-dom';
+import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import LoginPopup from '../LoginPopup/LoginPopup';
@@ -9,8 +9,9 @@ import './App.css';
 
 function App() {
   const { pathname } = useLocation();
+  const history = useHistory();
   const [loggedIn, setLoggedIn] = useState(false);
-  const [isLoginPopupOpen, setLoginPopupOpen] = useState(true);
+  const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setRegisterPopupOpen] = useState(false);
   const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = useState(false);
 
@@ -48,12 +49,17 @@ function App() {
     setRegisterPopupOpen(true);
   };
 
+  const onSignOut = () => {
+    history.push('/');
+  };
+
   return (
     <div className="app">
       <Header
         loggedIn={loggedIn}
         location={pathname}
         handleClick={handleClick}
+        onClickOut={onSignOut}
         onRegister={handleLoginPopupClick}
         isPopupOpen={isPopupOpen}
       />

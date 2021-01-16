@@ -9,6 +9,7 @@ const Header = ({
   handleClick,
   onRegister,
   isPopupOpen,
+  onClickOut,
 }) => {
   const [clickedMenu, setClickedMenu] = useState(false);
 
@@ -18,6 +19,12 @@ const Header = ({
 
   const handleCloseClick = () => {
     setClickedMenu(false);
+  };
+
+  const handleLogout = () => {
+    onClickOut();
+    handleCloseClick();
+    handleClick();
   };
 
   return (
@@ -40,6 +47,7 @@ const Header = ({
           NewsExplorer
         </Link>
         <Navigation
+          onClickOut={handleLogout}
           loggedIn={loggedIn}
           location={location}
           clickedMenu={clickedMenu}
