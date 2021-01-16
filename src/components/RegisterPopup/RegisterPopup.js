@@ -3,7 +3,7 @@ import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import PopupInput from '../PopupInput/PopupInput';
 import PopupWithForm from '../PopupWithForm/PopupWithForn';
 
-function LoginPopup({ isOpen, onClose, handlePopup }) {
+function RegisterPopup({ isOpen, onClose, handlePopup }) {
   const valid = createRef();
   const {
     values,
@@ -36,19 +36,19 @@ function LoginPopup({ isOpen, onClose, handlePopup }) {
   return (
     <PopupWithForm
       ref={valid}
-      name="login"
-      title="Вход"
+      name="register"
+      title="Регистрация"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
       isValid={isValid}
-      buttonText="Войти"
+      buttonText="Зарегистрироваться"
       switchPopupOpen={handleSwitchPopup}
     >
       <PopupInput
         value={values.email}
         titleForm="Email"
-        id="email-login"
+        id="email-register"
         changeValue={handleChange}
         name="email"
         type="email"
@@ -60,7 +60,7 @@ function LoginPopup({ isOpen, onClose, handlePopup }) {
       <PopupInput
         value={values.password}
         titleForm="Пароль"
-        id="password-login"
+        id="password-register"
         changeValue={handleChange}
         name="password"
         type="password"
@@ -70,8 +70,21 @@ function LoginPopup({ isOpen, onClose, handlePopup }) {
         autoComplete="off"
         validationMessage={errors.password}
       />
+      <PopupInput
+        value={values.name}
+        titleForm="Имя"
+        changeValue={handleChange}
+        id="name-register"
+        name="name"
+        type="text"
+        placeholder="Введите своё имя"
+        required
+        minLength="2"
+        autoComplete="off"
+        validationMessage={errors.name}
+      />
     </PopupWithForm>
   );
 }
 
-export default LoginPopup;
+export default RegisterPopup;

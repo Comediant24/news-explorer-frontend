@@ -1,40 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './PopupInput.css';
 
 const Input = ({
-  label,
+  titleForm,
   changeValue,
   name,
   value,
   validationMessage,
-  minLeng,
+  minLength,
+  id,
+  apiError,
   ...rest
 }) => {
-  const [min, setMin] = useState('');
-
-  useEffect(() => {
-    if (minLeng) setMin('6');
-  }, [minLeng]);
-
-  function handleInputChange(e) {
+  const handleInputChange = (e) => {
     changeValue(e);
-  }
-
+  };
   return (
     <div className="input__container">
-      <label className="input__label" htmlFor={name}>
-        {label}
+      <label className="input__label" htmlFor={id}>
+        {titleForm}
       </label>
       <input
         {...rest}
-        id={name}
+        id={id}
         className={`input__form input__type_${name}`}
         name={name}
         onChange={handleInputChange}
-        minLength={min}
+        minLength={minLength}
         value={value || ''}
       />
       <span className="input__error">{validationMessage || ''}</span>
+      {name === 'name' ? (
+        apiError ? (
+          <span className="input__error input__error_api">
+            Такой пользователь уже есть
+          </span>
+        ) : (
+          ''
+        )
+      ) : (
+        ''
+      )}
     </div>
   );
 };

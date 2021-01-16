@@ -13,6 +13,7 @@ const PopupWithForm = forwardRef(
       onClose,
       onSubmit,
       buttonText,
+      switchPopupOpen,
     },
     ref
   ) => {
@@ -41,7 +42,10 @@ const PopupWithForm = forwardRef(
             {buttonText || 'Сохранить'}
           </button>
           <p className="popup__handle">
-            или <span className="popup__handle_link">Зарегистрироваться</span>
+            или{' '}
+            <span className="popup__handle_link" onClick={switchPopupOpen}>
+              {name === 'login' ? 'Зарегистрироваться' : 'Войти'}
+            </span>
           </p>
           <button
             className={`button popup__close-button`}

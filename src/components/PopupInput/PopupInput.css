@@ -41,3 +41,7 @@
   line-height: 15px;
   color: #ff0000;
 }
+
+.input__error_api {
+  margin: 0 auto;
+}

@@ -3,6 +3,7 @@ import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import LoginPopup from '../LoginPopup/LoginPopup';
+import RegisterPopup from '../RegisterPopup/RegisterPopup';
 import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
 import './App.css';
@@ -70,6 +71,11 @@ function App() {
             isOpen={isLoginPopupOpen}
             onClose={closeAllPopups}
             handlePopup={handleRegisterPopupClick}
+          />
+          <RegisterPopup
+            isOpen={isRegisterPopupOpen}
+            onClose={closeAllPopups}
+            handlePopup={handleLoginPopupClick}
           />
         </Route>
         <Route exact path="/saved-news">
