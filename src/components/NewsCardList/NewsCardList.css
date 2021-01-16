@@ -60,6 +60,11 @@
   cursor: pointer;
 }
 
+.newslist__button:hover {
+  opacity: 0.9;
+  transition: opacity 0.2s ease-out;
+}
+
 .newslist__button_hidden {
   display: none;
 }

@@ -78,6 +78,11 @@
   color: #ffffff;
 }
 
+.search-form__btn:hover {
+  background-color: #347eff;
+  transition: background-color 0.2s ease-out;
+}
+
 @media screen and (max-width: 900px) {
   .search-form {
     min-height: 400px;
