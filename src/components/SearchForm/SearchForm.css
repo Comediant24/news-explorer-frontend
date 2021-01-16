@@ -109,8 +109,18 @@
     padding-right: 196px;
   }
 
+  .search-form__input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2pt #2f71e5;
+  }
+
   .search-form__btn {
     width: 160px;
+  }
+
+  .search-form__btn:focus {
+    outline: none;
+    box-shadow: 0 0 2pt 2pt #000000;
   }
 }
 
