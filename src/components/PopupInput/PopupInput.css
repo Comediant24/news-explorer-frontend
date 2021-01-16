@@ -1,0 +1,43 @@
+.input__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.input__label {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #2f71e5;
+}
+
+.input__form {
+  border: none;
+  border-bottom: 1px solid #00000033;
+  width: 100%;
+  padding: 0;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  box-sizing: border-box;
+  padding-bottom: 10px;
+  margin: 8px auto 3px;
+}
+
+.input__form:focus {
+  outline: none;
+  border-bottom: 1px solid #000000;
+}
+
+.input__error {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+}

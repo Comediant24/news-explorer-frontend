@@ -1,0 +1,143 @@
+.popup {
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+  width: 100%;
+  min-width: 320px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  transition: visibility 0.5s, opacity 0.5s ease;
+}
+
+.popup__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000080;
+}
+
+.popup_opened {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup__form {
+  z-index: 1;
+  background: #ffffff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  padding: 34px 36px 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 430px;
+  box-sizing: border-box;
+}
+
+.popup__title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 28px;
+  color: #1a1b22;
+  margin: 0;
+}
+
+.popup__input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0;
+  border-style: none;
+  margin: 22px 0 39px;
+}
+
+.popup__submit-button {
+  background: #2f71e5;
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+  border-radius: 100px;
+  height: 64px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.popup__submit-button_disabled {
+  background: #e6e8eb;
+  color: #b6bcbf;
+  cursor: default;
+}
+
+.popup__close-button {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  justify-self: end;
+  margin-left: auto;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.popup__handle {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #000000;
+  margin: 16px 0 0;
+}
+
+.popup__handle_link {
+  color: #2f71e5;
+}
+
+@media screen and (max-width: 550px) {
+  .popup {
+    top: 56px;
+  }
+
+  .popup__form {
+    width: 100%;
+    height: 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 16px 16px 0;
+  }
+
+  .popup__input-container {
+    margin: 22px 0;
+  }
+
+  .popup__overlay {
+    display: none;
+  }
+
+  .popup__close-button {
+    top: -41px;
+    right: 12px;
+  }
+
+  .popup__close-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .navbar__menu-icon_hidden {
+    display: none;
+  }
+}
