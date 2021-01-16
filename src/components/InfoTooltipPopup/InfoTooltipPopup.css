@@ -1,0 +1,14 @@
+.popup__login-link {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: #2f71e5;
+  margin: 14px 0 0;
+  cursor: pointer;
+}
+
+.popup__container_infotooltip {
+  padding: 43px 36px 51px;
+}

@@ -7,6 +7,7 @@ import RegisterPopup from '../RegisterPopup/RegisterPopup';
 import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
 import './App.css';
+import InfoTooltipPopup from '../InfoTooltipPopup/InfoTooltipPopup';
 
 function App() {
   const { pathname } = useLocation();
@@ -50,6 +51,10 @@ function App() {
     setRegisterPopupOpen(true);
   };
 
+  const handleInfoTolltipOpen = () => {
+    setInfoTooltipPopupOpen(true);
+  };
+
   const onSignOut = () => {
     history.push('/');
   };
@@ -74,6 +79,12 @@ function App() {
           />
           <RegisterPopup
             isOpen={isRegisterPopupOpen}
+            onClose={closeAllPopups}
+            handlePopup={handleLoginPopupClick}
+            isRegister={handleInfoTolltipOpen}
+          />
+          <InfoTooltipPopup
+            isOpen={isInfoTooltipPopupOpen}
             onClose={closeAllPopups}
             handlePopup={handleLoginPopupClick}
           />

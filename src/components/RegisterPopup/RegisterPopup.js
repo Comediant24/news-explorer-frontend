@@ -4,7 +4,7 @@ import Popup from '../Popup/Popup';
 import PopupWithForm from '../PopupWithForm/PopupWithForn';
 import PopupInput from '../PopupInput/PopupInput';
 
-const RegisterPopup = ({ isOpen, onClose, handlePopup }) => {
+const RegisterPopup = ({ isOpen, onClose, handlePopup, isRegister }) => {
   const valid = createRef();
   const {
     values,
@@ -27,6 +27,7 @@ const RegisterPopup = ({ isOpen, onClose, handlePopup }) => {
     e.preventDefault();
     resetForm();
     onClose();
+    isRegister();
   };
 
   const handleSwitchPopup = () => {

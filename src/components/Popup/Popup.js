@@ -6,7 +6,7 @@ const Popup = ({ name, children, isOpen, onClose, title }) => {
   return (
     <section className={`popup popup_${name} ${isOpen ? 'popup_opened' : ''}`}>
       <div onClick={onClose} className="popup__overlay"></div>
-      <div className="popup__container">
+      <div className={`popup__container popup__container_${name}`}>
         <button
           className={`button popup__close-button`}
           onClick={onClose}
