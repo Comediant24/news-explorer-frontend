@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useWindowSize } from '../../hooks/useWindowSize';
 import { ReactComponent as BookmarkIcon } from '../../images/bookmark.svg';
 import { ReactComponent as DeleteIcon } from '../../images/trash.svg';
 import './NewsCard.css';
@@ -11,6 +12,22 @@ const NewsCard = ({
   source,
   tag,
 }) => {
+  const [clamp, setClamp] = useState(4);
+  const [heightTitle, setHeightTitle] = useState(0);
+  const windowSize = useWindowSize();
+  const titleRef = useRef();
+
+  useEffect(() => {
+    setHeightTitle(titleRef.current.offsetHeight);
+    if (windowSize <= 550) {
+      if (heightTitle > 52) return setClamp(2);
+      return setClamp(4);
+    }
+    if (heightTitle <= 30) return setClamp(6);
+    if (heightTitle > 60) return setClamp(4);
+    return setClamp(5);
+  }, [windowSize, heightTitle]);
+
   const convertDate = (newsDate) => {
     const publishDate = new Date(newsDate);
     return `${publishDate.toLocaleString('ru', {
@@ -18,23 +35,7 @@ const NewsCard = ({
       day: 'numeric',
     })}, ${publishDate.getFullYear()}`;
   };
-
-  const [heightTitle, setHeightTitle] = useState(0);
-  const titleRef = useRef();
-
-  useEffect(() => {
-    setHeightTitle(titleRef.current.offsetHeight);
-  }, []);
-
-  const setClamp = (hight) => {
-    if (window.innerWidth <= 500) {
-      if (hight > 60) return { WebkitLineClamp: '2' };
-      if (hight > 40) return { WebkitLineClamp: '4' };
-    }
-    if (hight <= 29) return { WebkitLineClamp: '6' };
-    if (hight > 60) return { WebkitLineClamp: '4' };
-    return { WebkitLineClamp: '5' };
-  };
+  console.log({ clamp, heightTitle });
 
   return (
     <div className="newscard">
@@ -59,7 +60,7 @@ const NewsCard = ({
         <h3 ref={titleRef} className="newscard__title">
           {title}
         </h3>
-        <p style={setClamp(heightTitle)} className="newscard__description">
+        <p style={{ WebkitLineClamp: clamp }} className="newscard__description">
           {description}
         </p>
         <p className="newscard__source-name">{source}</p>
