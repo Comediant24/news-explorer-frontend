@@ -16,7 +16,7 @@
 }
 
 .newslist__title {
-  font-family: Roboto Slab;
+  font-family: 'Roboto Slab', Arial, 'Segoe UI', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 40px;
@@ -50,7 +50,6 @@
   width: 288px;
   height: 64px;
   border-radius: 80px;
-  font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;

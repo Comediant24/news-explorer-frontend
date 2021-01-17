@@ -17,7 +17,7 @@
 }
 
 .search-form__title {
-  font-family: Roboto Slab;
+  font-family: 'Roboto Slab', Arial, 'Segoe UI', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 60px;
@@ -27,7 +27,6 @@
 }
 
 .search-form__subtitle {
-  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -51,7 +50,6 @@
   border-radius: 100px;
   width: 100%;
   padding: 0 208px 0 24px;
-  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -70,7 +68,6 @@
   height: 100%;
   cursor: pointer;
   border-color: transparent;
-  font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;

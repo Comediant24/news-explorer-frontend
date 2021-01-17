@@ -10,7 +10,6 @@
 }
 
 .savedheader__description {
-  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -20,7 +19,7 @@
 }
 
 .savedheader__title {
-  font-family: Roboto Slab;
+  font-family: 'Roboto Slab', Arial, 'Segoe UI', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 40px;
@@ -31,7 +30,6 @@
 }
 
 .savedheader__tag-list {
-  font-family: Roboto;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
