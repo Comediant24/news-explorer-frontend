@@ -1,0 +1,82 @@
+.savedheader__container {
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+  box-sizing: border-box;
+  color: #ffffff;
+  padding: 120px 104px 56px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.savedheader__description {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: rgba(26, 27, 34, 0.5);
+  margin: 0;
+}
+
+.savedheader__title {
+  font-family: 'Roboto Slab', Arial, 'Segoe UI', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 46px;
+  color: #1a1b22;
+  margin: 0;
+  max-width: 530px;
+}
+
+.savedheader__tag-list {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a1b22;
+  margin: 0;
+}
+
+.savedheader__tag {
+  font-weight: 700;
+}
+
+@media screen and (max-width: 900px) {
+  .savedheader__container {
+    padding: 90px 40px 32px;
+    gap: 16px;
+  }
+
+  .savedheader__description {
+    font-size: 14px;
+  }
+
+  .savedheader__title {
+    font-size: 30px;
+    line-height: 34px;
+    max-width: 336px;
+  }
+
+  .savedheader__tag-list {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .savedheader__container {
+    padding: 64px 16px 32px;
+  }
+
+  .savedheader__description {
+    font-size: 12px;
+  }
+
+  .savedheader__title {
+    line-height: 34px;
+  }
+
+  .savedheader__tag-list {
+    font-size: 18px;
+  }
+}
