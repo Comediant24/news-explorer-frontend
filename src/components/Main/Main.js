@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getNews } from '../../utils/NewsAPI';
 import About from '../About/About';
 import NewsCardList from '../NewsCardList/NewsCardList';
@@ -11,6 +11,10 @@ const Main = ({ location }) => {
   const [isPreloaderShow, setPreloaderShow] = useState(false);
   const [isNotFoundShow, setNotFoundShow] = useState(false);
 
+  useEffect(() => {
+    setArticlesNews(JSON.parse(localStorage.getItem('articles')));
+  }, []);
+
   const getArticlesNews = (keyword) => {
     setNotFoundShow(false);
     setPreloaderShow(true);
@@ -18,6 +22,7 @@ const Main = ({ location }) => {
       .then((articles) => {
         if (articles.articles.length === 0) return setNotFoundShow(true);
         setArticlesNews(articles.articles);
+        localStorage.setItem('articles', JSON.stringify(articles.articles));
       })
       .finally(() => {
         setPreloaderShow(false);
