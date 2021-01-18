@@ -12,7 +12,10 @@ const Main = ({ location }) => {
   const [isNotFoundShow, setNotFoundShow] = useState(false);
 
   useEffect(() => {
-    setArticlesNews(JSON.parse(localStorage.getItem('articles')));
+    const lastRequest = localStorage.getItem('articles');
+    if (lastRequest) {
+      setArticlesNews(JSON.parse(lastRequest));
+    }
   }, []);
 
   const getArticlesNews = (keyword) => {
