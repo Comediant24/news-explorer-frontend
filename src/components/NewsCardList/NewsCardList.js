@@ -1,9 +1,18 @@
-import React from 'react';
-import NEWS from '../../data/news';
+import React, { useMemo, useState } from 'react';
 import NewsCard from '../NewsCard/NewsCard';
 import './NewsCardList.css';
 
-const NewsCardList = ({ location }) => {
+const NewsCardList = ({ articles, location }) => {
+  const [countNews, setCountNews] = useState(3);
+
+  const addMoreNews = () => {
+    setCountNews(countNews + 3);
+  };
+
+  const disableMoreNewsBtn = useMemo(() => {
+    return countNews >= articles.length ? 'newslist__button_hidden' : '';
+  }, [countNews, articles]);
+
   return (
     <section className="newslist">
       <div
@@ -23,9 +32,10 @@ const NewsCardList = ({ location }) => {
           Результаты поиска
         </h2>
         <ul className="newslist__list">
-          {NEWS.map((news, index) => (
+          {articles.slice(0, countNews).map((news, index) => (
             <li key={index} className="newslist__list-item">
               <NewsCard
+                onClickUrl={news.url}
                 location={location}
                 title={news.title}
                 image={news.urlToImage}
@@ -38,9 +48,10 @@ const NewsCardList = ({ location }) => {
           ))}
         </ul>
         <button
+          onClick={addMoreNews}
           className={
             location === '/'
-              ? 'newslist__button'
+              ? `newslist__button ${disableMoreNewsBtn}`
               : 'newslist__button newslist__button_hidden'
           }
         >

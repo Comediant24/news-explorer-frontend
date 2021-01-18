@@ -1,10 +1,41 @@
-import React from 'react';
+import React, { createRef, useState } from 'react';
 import './SearchForm.css';
 
-const SearchForm = () => {
+const SearchForm = ({ getArticlesNews }) => {
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [placeholderMessage, setPlaceHolderMessage] = useState(
+    'Введите тему новости'
+  );
+  const [isPlaceholderShow, setPlaceholderShow] = useState(false);
+
+  const inputRef = createRef();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (searchKeyword.trim().length === 0) {
+      setPlaceHolderMessage('Нужно ввести ключевое слово');
+      setPlaceholderShow(true);
+      inputRef.current.focus();
+    } else {
+      getArticlesNews(searchKeyword);
+      setSearchKeyword('');
+    }
+  };
+
+  const handleChangeSearchInput = (e) => {
+    setSearchKeyword(e.target.value);
+    handleEmptySearchRequest();
+  };
+
+  const handleEmptySearchRequest = () => {
+    setPlaceholderShow(false);
+    setPlaceHolderMessage('Введите тему новости');
+  };
+
   return (
     <section className="search-form">
       <form
+        onSubmit={handleSubmit}
         className="search-form__container"
         name="searchForm"
         action="#"
@@ -20,10 +51,19 @@ const SearchForm = () => {
         </p>
         <div className="search-form__input-wrapper">
           <input
-            className="search-form__input"
+            ref={inputRef}
+            value={searchKeyword}
+            onChange={handleChangeSearchInput}
+            onBlur={handleEmptySearchRequest}
+            className={`search-form__input ${
+              isPlaceholderShow
+                ? 'search-form__input_error search-form__input-placeholder'
+                : ''
+            }`}
             name="searchRequire"
             type="text"
-            placeholder="Введите тему новости"
+            placeholder={placeholderMessage}
+            autoComplete="off"
             required
           />
           <button

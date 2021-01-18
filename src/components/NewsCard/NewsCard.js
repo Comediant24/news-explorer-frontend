@@ -4,6 +4,7 @@ import { ReactComponent as BookmarkIcon } from '../../images/bookmark.svg';
 import { ReactComponent as DeleteIcon } from '../../images/trash.svg';
 import './NewsCard.css';
 const NewsCard = ({
+  onClickUrl,
   location,
   title,
   image,
@@ -35,10 +36,15 @@ const NewsCard = ({
       day: 'numeric',
     })}, ${publishDate.getFullYear()}`;
   };
-  console.log({ clamp, heightTitle });
+
+  const clickNewsCard = (e) => {
+    if (!e.target.classList.contains('newscard__button')) {
+      window.open(onClickUrl);
+    }
+  };
 
   return (
-    <div className="newscard">
+    <div onClick={clickNewsCard} className="newscard">
       <div className="newscard__button">
         {location === '/' ? (
           <>
