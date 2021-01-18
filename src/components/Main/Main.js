@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getNews } from '../../utils/NewsAPI';
+import { getNews } from '../../utils/NewsApi';
 import About from '../About/About';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import NotFoundNews from '../NotFoundNews/NotFoundNews';
@@ -16,6 +16,7 @@ const Main = ({ location }) => {
   }, []);
 
   const getArticlesNews = (keyword) => {
+    setArticlesNews([]);
     setNotFoundShow(false);
     setPreloaderShow(true);
     getNews(keyword)
