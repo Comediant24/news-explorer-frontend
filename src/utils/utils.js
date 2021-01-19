@@ -4,3 +4,7 @@ export const NEWS_API_CONFIG = {
   FROM: 7,
   PAGE_SIZE: 100,
 };
+
+export const MAIN_API_CONFIG = {
+  URL: 'http://localhost:3000',
+};
