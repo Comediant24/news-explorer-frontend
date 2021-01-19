@@ -9,13 +9,14 @@ import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
 import './App.css';
 import InfoTooltipPopup from '../InfoTooltipPopup/InfoTooltipPopup';
-import { authorize, register } from '../../utils/MainApi';
+import { authorize, getUserData, register } from '../../utils/MainApi';
 
 function App() {
   const { pathname } = useLocation();
   const history = useHistory();
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [userName, setUserName] = useState('');
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setRegisterPopupOpen] = useState(false);
   const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = useState(false);
@@ -84,8 +85,16 @@ function App() {
       .then((data) => {
         if (data.token) {
           localStorage.setItem('token', data.token);
+          getUserData(data.token)
+            .then((data) => {
+              setCurrentUser(data);
+              setUserName(data.name);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
           setLoggedIn(true);
-          setLoginPopupOpen(false);
+          closeAllPopups();
           setServerError(null);
         }
       })
@@ -106,6 +115,7 @@ function App() {
           onClickOut={onSignOut}
           onRegister={handleLoginPopupClick}
           isPopupOpen={isPopupOpen}
+          userName={userName}
         />
         <Switch>
           <Route exact path="/">

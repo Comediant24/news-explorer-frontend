@@ -13,6 +13,7 @@ const Navigation = ({
   onRegister,
   isPopupOpen,
   onClickOut,
+  userName,
 }) => {
   const blackClass = {
     link: 'navbar__link_black',
@@ -23,7 +24,6 @@ const Navigation = ({
   };
 
   const authButtonClick = () => {
-    handleClickAuth();
     onRegister();
   };
 
@@ -104,7 +104,7 @@ const Navigation = ({
                   : ''
               }`}
             >
-              UserName
+              {userName}
               <LogoutIcon
                 className={`navbar__btn-logout ${
                   clickedMenu

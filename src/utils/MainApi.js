@@ -32,6 +32,17 @@ export const authorize = (email, password) => {
   }).then((res) => handleResponse(res));
 };
 
+export const getUserData = (token) => {
+  return fetch(`${URL}/users/me`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((res) => handleResponse(res));
+};
+
 export const getSaveNews = (token) => {
   return fetch(`${URL}/articles`, {
     method: 'GET',
