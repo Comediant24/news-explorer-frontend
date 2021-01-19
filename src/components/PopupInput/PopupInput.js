@@ -15,14 +15,13 @@ const Input = ({
   const [textApiError, setTextApiError] = useState('');
 
   useEffect(() => {
-    apiError === 409
-      ? setTextApiError('Такой пользователь уже есть')
-      : setTextApiError('Неккоректные данные');
+    if (apiError === 400) setTextApiError('Введены некорректные данные');
+    if (apiError === 401) setTextApiError('Неверный логин или пароль');
+    if (apiError === 409) setTextApiError('Такой пользователь уже есть');
   }, [apiError]);
 
   const handleInputChange = (e) => {
     changeValue(e);
-    setTextApiError('');
   };
 
   return (

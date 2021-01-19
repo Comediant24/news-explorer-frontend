@@ -4,7 +4,7 @@ import Popup from '../Popup/Popup';
 import PopupWithForm from '../PopupWithForm/PopupWithForn';
 import PopupInput from '../PopupInput/PopupInput';
 
-const LoginPopup = ({ isOpen, onClose, handlePopup }) => {
+const LoginPopup = ({ isOpen, onClose, handlePopup, onLogin, apiError }) => {
   const valid = createRef();
   const {
     values,
@@ -25,8 +25,8 @@ const LoginPopup = ({ isOpen, onClose, handlePopup }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    resetForm();
-    onClose();
+    const { email, password } = values;
+    onLogin(email, password);
   };
 
   const handleSwitchPopup = () => {
@@ -69,6 +69,7 @@ const LoginPopup = ({ isOpen, onClose, handlePopup }) => {
           minLength="6"
           autoComplete="off"
           validationMessage={errors.password}
+          apiError={apiError}
         />
       </PopupWithForm>
     </Popup>

@@ -79,6 +79,23 @@ function App() {
       });
   };
 
+  const onLogin = (email, password) => {
+    authorize(email, password)
+      .then((data) => {
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+          setLoggedIn(true);
+          setLoginPopupOpen(false);
+          setServerError(null);
+        }
+      })
+      .catch((err) => {
+        if (err.error === 401) setServerError(401);
+        if (err.error === 400) setServerError(400);
+        console.log(err);
+      });
+  };
+
   return (
     <div className="app">
       <CurrentUserContext.Provider value={currentUser}>
@@ -97,6 +114,8 @@ function App() {
               isOpen={isLoginPopupOpen}
               onClose={closeAllPopups}
               handlePopup={handleRegisterPopupClick}
+              onLogin={onLogin}
+              apiError={serverError}
             />
             <RegisterPopup
               isOpen={isRegisterPopupOpen}
