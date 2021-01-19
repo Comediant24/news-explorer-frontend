@@ -4,7 +4,13 @@ import Popup from '../Popup/Popup';
 import PopupWithForm from '../PopupWithForm/PopupWithForn';
 import PopupInput from '../PopupInput/PopupInput';
 
-const RegisterPopup = ({ isOpen, onClose, handlePopup, isRegister }) => {
+const RegisterPopup = ({
+  isOpen,
+  onClose,
+  handlePopup,
+  onRegister,
+  apiError,
+}) => {
   const valid = createRef();
   const {
     values,
@@ -25,9 +31,8 @@ const RegisterPopup = ({ isOpen, onClose, handlePopup, isRegister }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    resetForm();
-    onClose();
-    isRegister();
+    const { name, email, password } = values;
+    onRegister(email, password, name);
   };
 
   const handleSwitchPopup = () => {
@@ -88,6 +93,7 @@ const RegisterPopup = ({ isOpen, onClose, handlePopup, isRegister }) => {
           minLength="2"
           autoComplete="off"
           validationMessage={errors.name}
+          apiError={apiError}
         />
       </PopupWithForm>
     </Popup>

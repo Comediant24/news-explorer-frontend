@@ -8,6 +8,7 @@ import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
 import './App.css';
 import InfoTooltipPopup from '../InfoTooltipPopup/InfoTooltipPopup';
+import { register } from '../../utils/MainApi';
 
 function App() {
   const { pathname } = useLocation();
@@ -16,6 +17,7 @@ function App() {
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setRegisterPopupOpen] = useState(false);
   const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = useState(false);
+  const [serverError, setServerError] = useState(null);
 
   const handleEscFunction = (e) => {
     if (e.keyCode === 27) closeAllPopups();
@@ -59,6 +61,22 @@ function App() {
     history.push('/');
   };
 
+  const onRegister = (email, password, name) => {
+    register(email, password, name)
+      .then((data) => {
+        if (data) {
+          setRegisterPopupOpen(false);
+          setInfoTooltipPopupOpen(true);
+          setServerError(null);
+        }
+      })
+      .catch((err) => {
+        if (err.error === 409) setServerError(409);
+        if (err.error === 400) setServerError(400);
+        console.log(err);
+      });
+  };
+
   return (
     <div className="app">
       <Header
@@ -81,7 +99,8 @@ function App() {
             isOpen={isRegisterPopupOpen}
             onClose={closeAllPopups}
             handlePopup={handleLoginPopupClick}
-            isRegister={handleInfoTolltipOpen}
+            onRegister={onRegister}
+            apiError={serverError}
           />
           <InfoTooltipPopup
             isOpen={isInfoTooltipPopupOpen}
