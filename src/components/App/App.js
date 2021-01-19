@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import LoginPopup from '../LoginPopup/LoginPopup';
@@ -8,12 +9,13 @@ import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
 import './App.css';
 import InfoTooltipPopup from '../InfoTooltipPopup/InfoTooltipPopup';
-import { register } from '../../utils/MainApi';
+import { authorize, register } from '../../utils/MainApi';
 
 function App() {
   const { pathname } = useLocation();
   const history = useHistory();
   const [loggedIn, setLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setRegisterPopupOpen] = useState(false);
   const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = useState(false);
@@ -79,40 +81,42 @@ function App() {
 
   return (
     <div className="app">
-      <Header
-        loggedIn={loggedIn}
-        location={pathname}
-        handleClick={handleClick}
-        onClickOut={onSignOut}
-        onRegister={handleLoginPopupClick}
-        isPopupOpen={isPopupOpen}
-      />
-      <Switch>
-        <Route exact path="/">
-          <Main location={pathname} />
-          <LoginPopup
-            isOpen={isLoginPopupOpen}
-            onClose={closeAllPopups}
-            handlePopup={handleRegisterPopupClick}
-          />
-          <RegisterPopup
-            isOpen={isRegisterPopupOpen}
-            onClose={closeAllPopups}
-            handlePopup={handleLoginPopupClick}
-            onRegister={onRegister}
-            apiError={serverError}
-          />
-          <InfoTooltipPopup
-            isOpen={isInfoTooltipPopupOpen}
-            onClose={closeAllPopups}
-            handlePopup={handleLoginPopupClick}
-          />
-        </Route>
-        <Route exact path="/saved-news">
-          <SavedNews location={pathname} />
-        </Route>
-      </Switch>
-      <Footer />
+      <CurrentUserContext.Provider value={currentUser}>
+        <Header
+          loggedIn={loggedIn}
+          location={pathname}
+          handleClick={handleClick}
+          onClickOut={onSignOut}
+          onRegister={handleLoginPopupClick}
+          isPopupOpen={isPopupOpen}
+        />
+        <Switch>
+          <Route exact path="/">
+            <Main location={pathname} />
+            <LoginPopup
+              isOpen={isLoginPopupOpen}
+              onClose={closeAllPopups}
+              handlePopup={handleRegisterPopupClick}
+            />
+            <RegisterPopup
+              isOpen={isRegisterPopupOpen}
+              onClose={closeAllPopups}
+              handlePopup={handleLoginPopupClick}
+              onRegister={onRegister}
+              apiError={serverError}
+            />
+            <InfoTooltipPopup
+              isOpen={isInfoTooltipPopupOpen}
+              onClose={closeAllPopups}
+              handlePopup={handleLoginPopupClick}
+            />
+          </Route>
+          <Route exact path="/saved-news">
+            <SavedNews location={pathname} />
+          </Route>
+        </Switch>
+        <Footer />
+      </CurrentUserContext.Provider>
     </div>
   );
 }
