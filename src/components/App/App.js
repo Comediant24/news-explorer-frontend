@@ -61,6 +61,8 @@ function App() {
   };
 
   const onSignOut = () => {
+    setLoggedIn(false);
+    localStorage.removeItem('token');
     history.push('/');
   };
 
@@ -111,7 +113,6 @@ function App() {
         <Header
           loggedIn={loggedIn}
           location={pathname}
-          handleClick={handleClick}
           onClickOut={onSignOut}
           onRegister={handleLoginPopupClick}
           isPopupOpen={isPopupOpen}

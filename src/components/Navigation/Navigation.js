@@ -8,7 +8,6 @@ const Navigation = ({
   location,
   handleClickMenu,
   clickedMenu,
-  handleClickAuth,
   handleCloseClick,
   onRegister,
   isPopupOpen,
