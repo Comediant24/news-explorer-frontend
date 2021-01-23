@@ -43,7 +43,7 @@ export const getUserData = (token) => {
   }).then((res) => handleResponse(res));
 };
 
-export const getSaveNews = (token) => {
+export const getSavedNews = (token) => {
   return fetch(`${URL}/articles`, {
     method: 'GET',
     headers: {
@@ -55,7 +55,7 @@ export const getSaveNews = (token) => {
 };
 
 export const addNewsCard = (newsArticle, token) => {
-  return fetch(`${URL}/cards`, {
+  return fetch(`${URL}/articles`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -65,11 +65,11 @@ export const addNewsCard = (newsArticle, token) => {
     body: JSON.stringify({
       keyword: newsArticle.keyword,
       title: newsArticle.title,
-      text: newsArticle.text,
-      date: newsArticle.date,
-      source: newsArticle.source,
-      link: newsArticle.link,
-      image: newsArticle.image,
+      text: newsArticle.description,
+      date: newsArticle.publishedAt,
+      source: newsArticle.source.name,
+      link: newsArticle.url,
+      image: newsArticle.urlToImage,
     }),
   }).then((res) => handleResponse(res));
 };

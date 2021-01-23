@@ -9,6 +9,11 @@
   flex-direction: column;
 }
 
+.newscard__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .newscard__button {
   display: flex;
   align-items: center;

@@ -4,14 +4,16 @@ import { ReactComponent as BookmarkIcon } from '../../images/bookmark.svg';
 import { ReactComponent as DeleteIcon } from '../../images/trash.svg';
 import './NewsCard.css';
 const NewsCard = ({
-  onClickUrl,
   location,
+  loggedIn,
+  onLoginOpen,
+  bookmarkBtnClick,
   title,
   image,
   date,
   description,
   source,
-  tag,
+  link,
 }) => {
   const [clamp, setClamp] = useState(4);
   const [heightTitle, setHeightTitle] = useState(0);
@@ -38,38 +40,56 @@ const NewsCard = ({
   };
 
   const clickNewsCard = (e) => {
-    if (!e.target.classList.contains('newscard__button')) {
-      window.open(onClickUrl);
+    window.open(link);
+  };
+
+  const handleClickBookmark = () => {
+    if (!loggedIn) {
+      onLoginOpen();
+    } else {
+      bookmarkBtnClick();
     }
   };
 
   return (
-    <div onClick={clickNewsCard} className="newscard">
+    <div className="newscard">
       <div className="newscard__button">
         {location === '/' ? (
           <>
-            <BookmarkIcon className="newscard__button-icon newscard__button-icon_bookmark" />
+            <BookmarkIcon
+              onClick={handleClickBookmark}
+              className="newscard__button-icon newscard__button-icon_bookmark"
+            />
             <div className="newscard__help">
-              Войдите, чтобы сохранять статьи
+              {loggedIn
+                ? 'Сохранить статью'
+                : 'Войдите, чтобы сохранять статьи'}
             </div>
           </>
         ) : (
           <>
             <DeleteIcon className="newscard__button-icon newscard__button-icon_delete" />
-            <div className="newscard__help newscard__help_saved">{tag}</div>
+            <div className="newscard__help newscard__help_saved">
+              Убрать из сохранённых
+            </div>
           </>
         )}
       </div>
-      <img className="newscard__image" src={image} alt={title}></img>
-      <div className="newscard__content">
-        <p className="newscard__date">{convertDate(date)}</p>
-        <h3 ref={titleRef} className="newscard__title">
-          {title}
-        </h3>
-        <p style={{ WebkitLineClamp: clamp }} className="newscard__description">
-          {description}
-        </p>
-        <p className="newscard__source-name">{source}</p>
+      <div className="newscard__wrapper" onClick={clickNewsCard}>
+        <img className="newscard__image" src={image} alt={title}></img>
+        <div className="newscard__content">
+          <p className="newscard__date">{convertDate(date)}</p>
+          <h3 ref={titleRef} className="newscard__title">
+            {title}
+          </h3>
+          <p
+            style={{ WebkitLineClamp: clamp }}
+            className="newscard__description"
+          >
+            {description}
+          </p>
+          <p className="newscard__source-name">{source}</p>
+        </div>
       </div>
     </div>
   );

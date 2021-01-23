@@ -6,7 +6,13 @@ import NotFoundNews from '../NotFoundNews/NotFoundNews';
 import Preloader from '../Preloader/Preloader';
 import SearchForm from '../SearchForm/SearchForm';
 
-const Main = ({ location }) => {
+const Main = ({
+  location,
+  loggedIn,
+  onLoginOpen,
+  bookmarkBtnClick,
+  savedUserCards,
+}) => {
   const [articlesNews, setArticlesNews] = useState([]);
   const [isPreloaderShow, setPreloaderShow] = useState(false);
   const [isNotFoundShow, setNotFoundShow] = useState(false);
@@ -25,19 +31,27 @@ const Main = ({ location }) => {
     getNews(keyword)
       .then((articles) => {
         if (articles.articles.length === 0) return setNotFoundShow(true);
-        setArticlesNews(articles.articles);
-        localStorage.setItem('articles', JSON.stringify(articles.articles));
+        const newsCards = articles.articles.map((c) => ({ ...c, keyword }));
+        setArticlesNews(newsCards);
+        localStorage.setItem('articles', JSON.stringify(newsCards));
       })
       .finally(() => {
         setPreloaderShow(false);
       });
   };
+
   return (
     <main className="main">
       <SearchForm getArticlesNews={getArticlesNews} />
       <Preloader isShow={isPreloaderShow} />
       {articlesNews.length > 0 ? (
-        <NewsCardList articles={articlesNews} location={location} />
+        <NewsCardList
+          onLoginOpen={onLoginOpen}
+          articles={articlesNews}
+          location={location}
+          loggedIn={loggedIn}
+          bookmarkBtnClick={bookmarkBtnClick}
+        />
       ) : (
         <></>
       )}

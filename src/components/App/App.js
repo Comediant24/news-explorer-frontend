@@ -9,7 +9,13 @@ import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
 import './App.css';
 import InfoTooltipPopup from '../InfoTooltipPopup/InfoTooltipPopup';
-import { authorize, getUserData, register } from '../../utils/MainApi';
+import {
+  addNewsCard,
+  authorize,
+  getUserData,
+  register,
+  getSavedNews,
+} from '../../utils/MainApi';
 
 function App() {
   const { pathname } = useLocation();
@@ -21,6 +27,7 @@ function App() {
   const [isRegisterPopupOpen, setRegisterPopupOpen] = useState(false);
   const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = useState(false);
   const [serverError, setServerError] = useState(null);
+  const [userCards, setUserCards] = useState([]);
 
   const handleEscFunction = (e) => {
     if (e.keyCode === 27) closeAllPopups();
@@ -34,9 +41,12 @@ function App() {
     };
   }, []);
 
-  const handleClick = () => {
-    setLoggedIn(!loggedIn);
-  };
+  useEffect(() => {
+    if (loggedIn) {
+      const token = localStorage.getItem('token');
+      getSavedCards(token);
+    }
+  }, [loggedIn, history]);
 
   const isPopupOpen = () => {
     return isLoginPopupOpen || isRegisterPopupOpen || isInfoTooltipPopupOpen;
@@ -54,10 +64,6 @@ function App() {
 
   const handleRegisterPopupClick = () => {
     setRegisterPopupOpen(true);
-  };
-
-  const handleInfoTolltipOpen = () => {
-    setInfoTooltipPopupOpen(true);
   };
 
   const onSignOut = () => {
@@ -107,6 +113,27 @@ function App() {
       });
   };
 
+  const handleNewsCardSave = (newsData) => {
+    const token = localStorage.getItem('token');
+    addNewsCard(newsData, token)
+      .then(() => {
+        getSavedCards();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const getSavedCards = (token) => {
+    getSavedNews(token)
+      .then((newsCards) => {
+        setUserCards(newsCards);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="app">
       <CurrentUserContext.Provider value={currentUser}>
@@ -120,7 +147,14 @@ function App() {
         />
         <Switch>
           <Route exact path="/">
-            <Main location={pathname} />
+            <Main
+              location={pathname}
+              loggedIn={loggedIn}
+              onLoginOpen={handleLoginPopupClick}
+              addNewsClick={handleNewsCardSave}
+              bookmarkBtnClick={handleNewsCardSave}
+              savedUserCards={userCards}
+            />
             <LoginPopup
               isOpen={isLoginPopupOpen}
               onClose={closeAllPopups}
@@ -142,7 +176,11 @@ function App() {
             />
           </Route>
           <Route exact path="/saved-news">
-            <SavedNews location={pathname} />
+            <SavedNews
+              location={pathname}
+              savedUserCards={userCards}
+              loggedIn={loggedIn}
+            />
           </Route>
         </Switch>
         <Footer />

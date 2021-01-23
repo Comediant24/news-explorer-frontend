@@ -3,11 +3,20 @@ import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import './SavedNews.css';
 
-const SavedNews = ({ location }) => {
+const SavedNews = ({ location, savedUserCards, loggedIn }) => {
   return (
     <section className="savednews">
       <SavedNewsHeader />
-      <NewsCardList location={location} />
+      {savedUserCards.length > 0 ? (
+        <NewsCardList
+          articles={savedUserCards}
+          location={location}
+          loggedIn={loggedIn}
+          //ookmarkBtnClick={bookmarkBtnClick}
+        />
+      ) : (
+        <></>
+      )}
     </section>
   );
 };
