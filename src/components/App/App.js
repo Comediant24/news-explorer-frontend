@@ -15,6 +15,7 @@ import {
   getUserData,
   register,
   getSavedNews,
+  removeCard,
 } from '../../utils/MainApi';
 
 function App() {
@@ -40,13 +41,6 @@ function App() {
       document.removeEventListener('keydown', handleEscFunction);
     };
   }, []);
-
-  useEffect(() => {
-    if (loggedIn) {
-      const token = localStorage.getItem('token');
-      getSavedCards(token);
-    }
-  }, [loggedIn, history]);
 
   useEffect(() => {
     if (loggedIn) {
@@ -154,6 +148,15 @@ function App() {
       });
   };
 
+  const removeSavedCard = (id) => {
+    const token = localStorage.getItem('token');
+    removeCard(id, token)
+      .then((data) => {
+        getSavedCards(token);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="app">
       <CurrentUserContext.Provider value={currentUser}>
@@ -171,8 +174,8 @@ function App() {
               location={pathname}
               loggedIn={loggedIn}
               onLoginOpen={handleLoginPopupClick}
-              addNewsClick={handleNewsCardSave}
               bookmarkBtnClick={handleNewsCardSave}
+              removeBookmarkCard={removeSavedCard}
               savedUserCards={userCards}
             />
             <LoginPopup
@@ -200,6 +203,7 @@ function App() {
               location={pathname}
               savedUserCards={userCards}
               loggedIn={loggedIn}
+              removeCard={removeSavedCard}
             />
           </Route>
         </Switch>

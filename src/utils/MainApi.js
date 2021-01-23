@@ -75,7 +75,7 @@ export const addNewsCard = (newsArticle, token) => {
 };
 
 export const removeCard = (id, token) => {
-  return fetch(`${URL}/cards/${id}`, {
+  return fetch(`${URL}/articles/${id}`, {
     method: 'DELETE',
     headers: {
       Accept: 'application/json',

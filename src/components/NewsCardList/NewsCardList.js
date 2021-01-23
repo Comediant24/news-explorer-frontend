@@ -9,6 +9,7 @@ const NewsCardList = ({
   onLoginOpen,
   bookmarkBtnClick,
   savedUserCards,
+  removeCard,
 }) => {
   const [countNews, setCountNews] = useState(3);
 
@@ -59,6 +60,7 @@ const NewsCardList = ({
                 source={news.source.name || news.source}
                 link={news.url || news.link}
                 keyword={news.keyword}
+                removeCard={removeCard}
               />
             </li>
           ))}

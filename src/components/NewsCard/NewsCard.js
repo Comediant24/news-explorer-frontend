@@ -17,6 +17,7 @@ const NewsCard = ({
   savedUserCards,
   keyword,
   newsData,
+  removeCard,
 }) => {
   const [clamp, setClamp] = useState(4);
   const [heightTitle, setHeightTitle] = useState(0);
@@ -49,6 +50,12 @@ const NewsCard = ({
   const handleClickBookmark = () => {
     if (!loggedIn) {
       onLoginOpen();
+    } else if (handleBookmarkBtnActive()) {
+      savedUserCards.forEach((savedCard) => {
+        if (savedCard.title === title) {
+          removeCard(savedCard._id);
+        }
+      });
     } else {
       bookmarkBtnClick({ ...newsData, keyword });
     }
@@ -58,13 +65,19 @@ const NewsCard = ({
     return !!savedUserCards.find((el) => el.title.includes(title));
   };
 
+  const handleClickDelete = () => {
+    removeCard(newsData._id);
+  };
+
   return (
     <div className="newscard">
-      <div className="newscard__button">
+      <div
+        onClick={location === '/' ? handleClickBookmark : handleClickDelete}
+        className="newscard__button"
+      >
         {location === '/' ? (
           <>
             <BookmarkIcon
-              onClick={handleClickBookmark}
               className={`newscard__button-icon newscard__button-icon_bookmark ${
                 handleBookmarkBtnActive()
                   ? 'newscard__button-icon_bookmark_add'

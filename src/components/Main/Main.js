@@ -12,6 +12,7 @@ const Main = ({
   onLoginOpen,
   bookmarkBtnClick,
   savedUserCards,
+  removeBookmarkCard,
 }) => {
   const [articlesNews, setArticlesNews] = useState([]);
   const [isPreloaderShow, setPreloaderShow] = useState(false);
@@ -46,6 +47,7 @@ const Main = ({
       <Preloader isShow={isPreloaderShow} />
       {articlesNews.length > 0 ? (
         <NewsCardList
+          removeCard={removeBookmarkCard}
           savedUserCards={savedUserCards}
           onLoginOpen={onLoginOpen}
           articles={articlesNews}

@@ -3,7 +3,7 @@ import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import './SavedNews.css';
 
-const SavedNews = ({ location, savedUserCards, loggedIn }) => {
+const SavedNews = ({ location, savedUserCards, loggedIn, removeCard }) => {
   return (
     <section className="savednews">
       <SavedNewsHeader />
@@ -12,6 +12,7 @@ const SavedNews = ({ location, savedUserCards, loggedIn }) => {
           articles={savedUserCards}
           location={location}
           loggedIn={loggedIn}
+          removeCard={removeCard}
           //ookmarkBtnClick={bookmarkBtnClick}
         />
       ) : (
