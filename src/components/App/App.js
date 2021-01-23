@@ -84,6 +84,8 @@ function App() {
     setLoggedIn(false);
     localStorage.removeItem('token');
     history.push('/');
+    setUserCards([]);
+    setCurrentUser('');
   };
 
   const tokenCheck = (token) => {
@@ -135,7 +137,7 @@ function App() {
     const token = localStorage.getItem('token');
     addNewsCard(newsData, token)
       .then(() => {
-        getSavedCards();
+        getSavedCards(token);
       })
       .catch((err) => {
         console.log(err);
@@ -145,7 +147,7 @@ function App() {
   const getSavedCards = (token) => {
     getSavedNews(token)
       .then((newsCards) => {
-        setUserCards(newsCards);
+        setUserCards(newsCards.reverse());
       })
       .catch((err) => {
         console.log(err);

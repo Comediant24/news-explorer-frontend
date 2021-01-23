@@ -14,6 +14,9 @@ const NewsCard = ({
   description,
   source,
   link,
+  savedUserCards,
+  keyword,
+  newsData,
 }) => {
   const [clamp, setClamp] = useState(4);
   const [heightTitle, setHeightTitle] = useState(0);
@@ -47,8 +50,12 @@ const NewsCard = ({
     if (!loggedIn) {
       onLoginOpen();
     } else {
-      bookmarkBtnClick();
+      bookmarkBtnClick({ ...newsData, keyword });
     }
+  };
+
+  const handleBookmarkBtnActive = () => {
+    return !!savedUserCards.find((el) => el.title.includes(title));
   };
 
   return (
@@ -58,11 +65,17 @@ const NewsCard = ({
           <>
             <BookmarkIcon
               onClick={handleClickBookmark}
-              className="newscard__button-icon newscard__button-icon_bookmark"
+              className={`newscard__button-icon newscard__button-icon_bookmark ${
+                handleBookmarkBtnActive()
+                  ? 'newscard__button-icon_bookmark_add'
+                  : ''
+              }`}
             />
             <div className="newscard__help">
               {loggedIn
-                ? 'Сохранить статью'
+                ? handleBookmarkBtnActive()
+                  ? 'Убрать из сохраненных'
+                  : 'Сохранить статью'
                 : 'Войдите, чтобы сохранять статьи'}
             </div>
           </>

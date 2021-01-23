@@ -46,6 +46,7 @@ const Main = ({
       <Preloader isShow={isPreloaderShow} />
       {articlesNews.length > 0 ? (
         <NewsCardList
+          savedUserCards={savedUserCards}
           onLoginOpen={onLoginOpen}
           articles={articlesNews}
           location={location}

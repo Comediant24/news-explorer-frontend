@@ -8,6 +8,7 @@ const NewsCardList = ({
   loggedIn,
   onLoginOpen,
   bookmarkBtnClick,
+  savedUserCards,
 }) => {
   const [countNews, setCountNews] = useState(3);
 
@@ -45,6 +46,7 @@ const NewsCardList = ({
           {articles.slice(0, countNews).map((news, index) => (
             <li key={index} className="newslist__list-item">
               <NewsCard
+                savedUserCards={savedUserCards}
                 bookmarkBtnClick={bookmarkBtnClick}
                 onLoginOpen={onLoginOpen}
                 loggedIn={loggedIn}
@@ -56,6 +58,7 @@ const NewsCardList = ({
                 description={news.description || news.text}
                 source={news.source.name || news.source}
                 link={news.url || news.link}
+                keyword={news.keyword}
               />
             </li>
           ))}
