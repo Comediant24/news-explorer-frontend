@@ -48,6 +48,20 @@ function App() {
     }
   }, [loggedIn, history]);
 
+  useEffect(() => {
+    if (loggedIn) {
+      const token = localStorage.getItem('token');
+      getSavedCards(token);
+    }
+  }, [loggedIn, history]);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      tokenCheck(token);
+    }
+  }, []);
+
   const isPopupOpen = () => {
     return isLoginPopupOpen || isRegisterPopupOpen || isInfoTooltipPopupOpen;
   };
@@ -72,6 +86,18 @@ function App() {
     history.push('/');
   };
 
+  const tokenCheck = (token) => {
+    return getUserData(token)
+      .then((data) => {
+        setCurrentUser(data);
+        setLoggedIn(true);
+        setUserName(data.name);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const onRegister = (email, password, name) => {
     register(email, password, name)
       .then((data) => {
@@ -93,15 +119,7 @@ function App() {
       .then((data) => {
         if (data.token) {
           localStorage.setItem('token', data.token);
-          getUserData(data.token)
-            .then((data) => {
-              setCurrentUser(data);
-              setUserName(data.name);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-          setLoggedIn(true);
+          tokenCheck(data.token);
           closeAllPopups();
           setServerError(null);
         }
