@@ -204,6 +204,7 @@ function App() {
               savedUserCards={userCards}
               loggedIn={loggedIn}
               removeCard={removeSavedCard}
+              userName={userName}
             />
           </Route>
         </Switch>

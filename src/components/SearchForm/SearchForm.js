@@ -21,9 +21,12 @@ const SearchForm = ({ getArticlesNews }) => {
       setSearchKeyword('');
     }
   };
+  const capitalizeKeyWord = (string) => {
+    return string.charAt(0).toUpperCase() + string.toLowerCase().slice(1);
+  };
 
   const handleChangeSearchInput = (e) => {
-    setSearchKeyword(e.target.value);
+    setSearchKeyword(capitalizeKeyWord(e.target.value));
     handleEmptySearchRequest();
   };
 
