@@ -17,6 +17,7 @@ import {
   getSavedNews,
   removeCard,
 } from '../../utils/MainApi';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute.js';
 
 function App() {
   const { pathname } = useLocation();
@@ -67,6 +68,7 @@ function App() {
   };
 
   const handleLoginPopupClick = () => {
+    console.log('object');
     setLoginPopupOpen(true);
   };
 
@@ -198,7 +200,11 @@ function App() {
               handlePopup={handleLoginPopupClick}
             />
           </Route>
-          <Route exact path="/saved-news">
+          <ProtectedRoute
+            loggedIn={loggedIn}
+            onLogin={handleLoginPopupClick}
+            path="/saved-news"
+          >
             <SavedNews
               location={pathname}
               savedUserCards={userCards}
@@ -206,7 +212,7 @@ function App() {
               removeCard={removeSavedCard}
               userName={userName}
             />
-          </Route>
+          </ProtectedRoute>
         </Switch>
         <Footer />
       </CurrentUserContext.Provider>
