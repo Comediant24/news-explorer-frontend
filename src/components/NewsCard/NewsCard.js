@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { ReactComponent as BookmarkIcon } from '../../images/bookmark.svg';
 import { ReactComponent as DeleteIcon } from '../../images/trash.svg';
+import imageNotAviable from '../../images/image-not-found.png';
 import './NewsCard.css';
 const NewsCard = ({
   location,
@@ -21,6 +22,7 @@ const NewsCard = ({
 }) => {
   const [clamp, setClamp] = useState(4);
   const [heightTitle, setHeightTitle] = useState(0);
+  const [img, setImg] = useState(image);
   const windowSize = useWindowSize();
   const titleRef = useRef();
 
@@ -110,7 +112,15 @@ const NewsCard = ({
         <></>
       )}
       <div className="newscard__wrapper" onClick={clickNewsCard}>
-        <img className="newscard__image" src={image} alt={title}></img>
+        <img
+          className="newscard__image"
+          onError={(e) => {
+            setImg(imageNotAviable);
+            e.target.style = 'object-position: center';
+          }}
+          src={img}
+          alt={title}
+        ></img>
         <div className="newscard__content">
           <p className="newscard__date">{convertDate(date)}</p>
           <h3 ref={titleRef} className="newscard__title">
