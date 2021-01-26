@@ -10,7 +10,7 @@ const handleResponse = (response) => {
 };
 
 export const register = (email, password, name) => {
-  return fetch(`http://localhost:3000/signup`, {
+  return fetch(`${URL}/signup`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',

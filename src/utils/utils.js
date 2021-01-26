@@ -6,5 +6,5 @@ export const NEWS_API_CONFIG = {
 };
 
 export const MAIN_API_CONFIG = {
-  URL: 'http://localhost:3000',
+  URL: 'https://api.comediant-news.students.nomoredomains.work',
 };
