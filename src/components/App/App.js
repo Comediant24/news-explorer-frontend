@@ -1,5 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
+import {
+  Route,
+  Switch,
+  useHistory,
+  useLocation,
+  Redirect,
+} from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -213,6 +219,9 @@ function App() {
               userName={userName}
             />
           </ProtectedRoute>
+          <Route path="*">
+            <Redirect to="/" />
+          </Route>
         </Switch>
         <Footer />
       </CurrentUserContext.Provider>
