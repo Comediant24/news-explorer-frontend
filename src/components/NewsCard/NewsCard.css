@@ -41,6 +41,25 @@
   stroke: #2f71e5;
 }
 
+.newscard__keyword {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 12px;
+  background: #ffffff;
+  border-radius: 8px;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  font-family: 'Roboto', Arial, 'Segoe UI', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  cursor: default;
+}
+
 .newscard__help {
   font-style: normal;
   font-weight: 500;
@@ -153,6 +172,10 @@
     visibility: hidden;
   }
 
+  .newscard__keyword {
+    top: 8px;
+    left: 8px;
+  }
   .newscard__image {
     height: 150px;
   }
@@ -198,5 +221,10 @@
   .newscard__button {
     top: 16px;
     right: 16px;
+  }
+
+  .newscard__keyword {
+    top: 16px;
+    left: 16px;
   }
 }

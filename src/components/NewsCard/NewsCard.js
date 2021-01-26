@@ -95,12 +95,20 @@ const NewsCard = ({
         ) : (
           <>
             <DeleteIcon className="newscard__button-icon newscard__button-icon_delete" />
-            <div className="newscard__help newscard__help_saved">
+            <div
+              className="newscard__help newscard__help_saved"
+              style={{ top: 45, right: 'calc(100% - 40px)' }}
+            >
               Убрать из сохранённых
             </div>
           </>
         )}
       </div>
+      {location === '/saved-news' ? (
+        <span className="newscard__keyword">{keyword}</span>
+      ) : (
+        <></>
+      )}
       <div className="newscard__wrapper" onClick={clickNewsCard}>
         <img className="newscard__image" src={image} alt={title}></img>
         <div className="newscard__content">
