@@ -29,8 +29,7 @@ function App() {
   const { pathname } = useLocation();
   const history = useHistory();
   const [loggedIn, setLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
-  const [userName, setUserName] = useState('');
+  const [currentUser, setCurrentUser] = useState([]);
   const [isLoginPopupOpen, setLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setRegisterPopupOpen] = useState(false);
   const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] = useState(false);
@@ -74,7 +73,6 @@ function App() {
   };
 
   const handleLoginPopupClick = () => {
-    console.log('object');
     setLoginPopupOpen(true);
   };
 
@@ -87,7 +85,6 @@ function App() {
     localStorage.removeItem('token');
     history.push('/');
     setUserCards([]);
-    setCurrentUser('');
   };
 
   const tokenCheck = (token) => {
@@ -95,7 +92,6 @@ function App() {
       .then((data) => {
         setCurrentUser(data);
         setLoggedIn(true);
-        setUserName(data.name);
       })
       .catch((err) => {
         console.log(err);
@@ -174,14 +170,13 @@ function App() {
           onClickOut={onSignOut}
           onRegister={handleLoginPopupClick}
           isPopupOpen={isPopupOpen}
-          userName={userName}
         />
         <Switch>
           <Route exact path="/">
             <Main
               location={pathname}
               loggedIn={loggedIn}
-              onLoginOpen={handleLoginPopupClick}
+              onRegisterOpen={handleRegisterPopupClick}
               bookmarkBtnClick={handleNewsCardSave}
               removeBookmarkCard={removeSavedCard}
               savedUserCards={userCards}
@@ -216,7 +211,6 @@ function App() {
               savedUserCards={userCards}
               loggedIn={loggedIn}
               removeCard={removeSavedCard}
-              userName={userName}
             />
           </ProtectedRoute>
           <Route path="*">

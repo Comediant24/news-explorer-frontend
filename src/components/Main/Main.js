@@ -9,7 +9,7 @@ import SearchForm from '../SearchForm/SearchForm';
 const Main = ({
   location,
   loggedIn,
-  onLoginOpen,
+  onRegisterOpen,
   bookmarkBtnClick,
   savedUserCards,
   removeBookmarkCard,
@@ -49,7 +49,7 @@ const Main = ({
         <NewsCardList
           removeCard={removeBookmarkCard}
           savedUserCards={savedUserCards}
-          onLoginOpen={onLoginOpen}
+          onRegisterOpen={onRegisterOpen}
           articles={articlesNews}
           location={location}
           loggedIn={loggedIn}

@@ -7,7 +7,7 @@ import './NewsCard.css';
 const NewsCard = ({
   location,
   loggedIn,
-  onLoginOpen,
+  onRegisterOpen,
   bookmarkBtnClick,
   title,
   image,
@@ -51,7 +51,7 @@ const NewsCard = ({
 
   const handleClickBookmark = () => {
     if (!loggedIn) {
-      onLoginOpen();
+      onRegisterOpen();
     } else if (handleBookmarkBtnActive()) {
       savedUserCards.forEach((savedCard) => {
         if (savedCard.title === title) {

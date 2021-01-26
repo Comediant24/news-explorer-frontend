@@ -9,7 +9,6 @@ const Header = ({
   onRegister,
   isPopupOpen,
   onClickOut,
-  userName,
 }) => {
   const [clickedMenu, setClickedMenu] = useState(false);
 
@@ -54,7 +53,6 @@ const Header = ({
           handleCloseClick={handleCloseClick}
           onRegister={onRegister}
           isPopupOpen={isPopupOpen}
-          userName={userName}
         />
       </div>
     </header>

@@ -6,7 +6,7 @@ const NewsCardList = ({
   articles = [],
   location,
   loggedIn,
-  onLoginOpen,
+  onRegisterOpen,
   bookmarkBtnClick,
   savedUserCards,
   removeCard,
@@ -49,7 +49,7 @@ const NewsCardList = ({
               <NewsCard
                 savedUserCards={savedUserCards}
                 bookmarkBtnClick={bookmarkBtnClick}
-                onLoginOpen={onLoginOpen}
+                onRegisterOpen={onRegisterOpen}
                 loggedIn={loggedIn}
                 location={location}
                 newsData={news}

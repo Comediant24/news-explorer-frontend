@@ -3,16 +3,10 @@ import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import './SavedNews.css';
 
-const SavedNews = ({
-  location,
-  savedUserCards,
-  loggedIn,
-  removeCard,
-  userName,
-}) => {
+const SavedNews = ({ location, savedUserCards, loggedIn, removeCard }) => {
   return (
     <section className="savednews">
-      <SavedNewsHeader userName={userName} userArticles={savedUserCards} />
+      <SavedNewsHeader userArticles={savedUserCards} />
       {savedUserCards.length > 0 ? (
         <NewsCardList
           articles={savedUserCards}

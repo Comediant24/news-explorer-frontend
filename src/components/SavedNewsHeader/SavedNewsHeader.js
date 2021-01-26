@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './SavedNewsHeader.css';
 
-const SavedNewsHeader = ({ userName, userArticles }) => {
+const SavedNewsHeader = ({ userArticles }) => {
   const [countArticles, setcountArticles] = useState(0);
   const [tags, setTags] = useState([]);
-  console.log('tags', tags);
+  const currentUser = useContext(CurrentUserContext);
 
   const configWords = [
     'сохраненная статья',
@@ -44,7 +45,7 @@ const SavedNewsHeader = ({ userName, userArticles }) => {
       <div className="savedheader__container">
         <p className="savedheader__description">Сохранённые статьи</p>
         <h1 className="savedheader__title">
-          {`${userName}, у вас ${
+          {`${currentUser.name}, у вас ${
             countArticles === 0
               ? 'нет сохранённых статей'
               : `${countArticles} ${declOfNum(configWords)}`
