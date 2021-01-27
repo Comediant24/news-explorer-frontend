@@ -6,7 +6,6 @@ import Navigation from '../Navigation/Navigation';
 const Header = ({
   loggedIn,
   location,
-  handleClick,
   onRegister,
   isPopupOpen,
   onClickOut,
@@ -24,7 +23,6 @@ const Header = ({
   const handleLogout = () => {
     onClickOut();
     handleCloseClick();
-    handleClick();
   };
 
   return (
@@ -51,7 +49,6 @@ const Header = ({
           loggedIn={loggedIn}
           location={location}
           clickedMenu={clickedMenu}
-          handleClickAuth={handleClick}
           handleClickMenu={handleClickMenu}
           handleCloseClick={handleCloseClick}
           onRegister={onRegister}

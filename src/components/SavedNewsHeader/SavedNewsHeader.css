@@ -38,6 +38,10 @@
   margin: 0;
 }
 
+.savedheader__tag-list_hidden {
+  display: none;
+}
+
 .savedheader__tag {
   font-weight: 700;
 }

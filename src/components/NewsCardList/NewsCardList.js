@@ -1,9 +1,30 @@
-import React from 'react';
-import NEWS from '../../data/news';
+import React, { useEffect, useMemo, useState } from 'react';
 import NewsCard from '../NewsCard/NewsCard';
 import './NewsCardList.css';
 
-const NewsCardList = ({ location }) => {
+const NewsCardList = ({
+  articles = [],
+  location,
+  loggedIn,
+  onRegisterOpen,
+  bookmarkBtnClick,
+  savedUserCards,
+  removeCard,
+}) => {
+  const [countNews, setCountNews] = useState(3);
+
+  useEffect(() => {
+    location === '/' ? setCountNews(3) : setCountNews(articles.length);
+  }, [articles, location]);
+
+  const addMoreNews = () => {
+    setCountNews(countNews + 3);
+  };
+
+  const disableMoreNewsBtn = useMemo(() => {
+    return countNews >= articles.length ? 'newslist__button_hidden' : '';
+  }, [countNews, articles]);
+
   return (
     <section className="newslist">
       <div
@@ -23,24 +44,32 @@ const NewsCardList = ({ location }) => {
           Результаты поиска
         </h2>
         <ul className="newslist__list">
-          {NEWS.map((news, index) => (
+          {articles.slice(0, countNews).map((news, index) => (
             <li key={index} className="newslist__list-item">
               <NewsCard
+                savedUserCards={savedUserCards}
+                bookmarkBtnClick={bookmarkBtnClick}
+                onRegisterOpen={onRegisterOpen}
+                loggedIn={loggedIn}
                 location={location}
+                newsData={news}
                 title={news.title}
-                image={news.urlToImage}
-                date={news.publishedAt}
-                description={news.description}
-                source={news.source.name}
-                tag={news.key}
+                image={news.urlToImage || news.image}
+                date={news.publishedAt || news.date}
+                description={news.description || news.text}
+                source={news.source.name || news.source}
+                link={news.url || news.link}
+                keyword={news.keyword}
+                removeCard={removeCard}
               />
             </li>
           ))}
         </ul>
         <button
+          onClick={addMoreNews}
           className={
             location === '/'
-              ? 'newslist__button'
+              ? `newslist__button ${disableMoreNewsBtn}`
               : 'newslist__button newslist__button_hidden'
           }
         >

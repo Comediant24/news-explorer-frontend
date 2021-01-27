@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Navigation.css';
 import { ReactComponent as LogoutIcon } from '../../images/exit.svg';
 import { NavLink } from 'react-router-dom';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 const Navigation = ({
   loggedIn,
   location,
   handleClickMenu,
   clickedMenu,
-  handleClickAuth,
   handleCloseClick,
   onRegister,
   isPopupOpen,
   onClickOut,
+  userName,
 }) => {
+  const currentUser = useContext(CurrentUserContext);
+
   const blackClass = {
     link: 'navbar__link_black',
     selectLink: 'navbar__link_select_black',
@@ -23,7 +26,6 @@ const Navigation = ({
   };
 
   const authButtonClick = () => {
-    handleClickAuth();
     onRegister();
   };
 
@@ -104,7 +106,7 @@ const Navigation = ({
                   : ''
               }`}
             >
-              UserName
+              {currentUser.name}
               <LogoutIcon
                 className={`navbar__btn-logout ${
                   clickedMenu
