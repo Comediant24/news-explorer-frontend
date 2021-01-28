@@ -1,70 +1,95 @@
-# Getting Started with Create React App
+<h1 align="center">
+    <img alt="NewsExplorer" src="./public/title.jpg">
+</h1>
+<p align="center">
+    <img alt="Version" src="https://img.shields.io/github/package-json/v/Comediant24/news-explorer-frontend" />
+    <img alt="Quality" src="https://img.shields.io/badge/status-release-orange.svg" >
+    <img alt="Made by: Comediant24" src="https://img.shields.io/badge/made%20by-Comediant24-blue" />
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Проект NewsExplorer - выпускная работа по профессии веб-разработчик курса [Яндекс Практикум](https://praktikum.yandex.ru 'Яндекс Практикум')
 
-## Available Scripts
+Ссылка на проект: **[NewsExplorer](https://comediant-news.students.nomoredomains.work/)**
 
-In the project directory, you can run:
+Ссылка на проект в gh-pages: **[NewsExplorer GH pages](https://comediant24.github.io/news-explorer-frontend/)**
 
-### `yarn start`
+Ссылка на репозиторий бекенда : **[NewsExplorer API](https://github.com/Comediant24/news-explorer-api)**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## ✍🏻 Краткое описание проекта
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Пользователь вводит в строку поиска ключевые слова и нажимает кнопку «Искать». После этого сайт должен выполнить два действия:
 
-### `yarn test`
+- отправить запрос к сервису NewsAPI, найти все подходящие материалы за последнюю неделю и отобразить карточки с ними;
+- когда пользователь сохранит понравившиеся новости, они должны отобразиться в специальном разделе на сайте.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Сайт состоит из двух страниц:
 
-### `yarn build`
+- Главная. Содержит только окно поиска.
+- Страница с сохранёнными новостями. На ней отображаются материалы, которые пользователь добавил в избранное.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Кроме них на сайте есть всплывающие окна (попапы):
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- с формой регистрации (чтобы пользователь мог сохранить новости в личном кабинете);
+- с формой входа.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+На каждой странице есть одинаковые блоки: они несколько раз используются в разных частях сайта. Повторно используемые компоненты нужно создавать на «Реакте» и использовать БЭМ для описания стилей.
+Верстка по макету, файловая структура по БЭМу, верстка должна быть адаптивная. Написать логику открытия и закрытия попапов, обработку событий на JavaScript.
 
-### `yarn eject`
+## 📖 Задачи
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Проект адаптирован под различные разрешения экрана, соответствует макетам, сделанным для них.
+- Все блоки из макета свёрстаны. Корректно работает навигация между страницами и ссылки на внешние ресурсы: ни одна ссылка не ведёт в пустоту или на якорь, внешние ссылки открываются в новой вкладке.
+- Отзывчивая вёрстка, которая корректно тянется на всех промежуточных разрешениях.
+- Отсутствуют ошибки валидации.
+- В коде используется семантическая разметка: применяются семантические теги, выбор элементов при вёрстке корректен (параграф должен быть параграфом, список — списком); структура DOM-дерева состоит не только из контейнеров div.
+- Для позиционирования элементов выбран верный подход, описанный корректным синтаксисом.
+- Каркас макета реализован на `Flex layout` и/или `Grid layout`.
+- Разметка портирована в JSX.
+- Модальные окны настроены и направляют запросы на соответствующие роуты написанного для этого проекта API.
+- Правильно работают оба состояния шапки: если пользователь не залогинился, в шапке должна быть кнопка `«Авторизоваться»`; а если пользователь залогинился, кнопка `«Авторизоваться»` исчезает. На её месте появляется ссылка `«Сохранённые статьи»` и кнопка выхода из системы.
+- После успешного сабмита формы поиска появляется блок с результатами. Если ничего не найдено, появляется надпись `«Ничего не найдено»`.
+- В блоке результата отображаются 3 карточки. Нажатие на кнопку `«Показать ещё»` отображает следующие 3 карточки.
+- Если пользователь закрыл вкладку, а после — вернулся на сайт, данные достаются из локального хранилища при монтировании компонента App.
+- При клике на иконку `«Сохранить»` в блоке карточки выполняется запрос к` /articles` нашего API.
+- На странице «Сохранённые статьи» блоки карточек также содержат: ключевое слово, по которому карточка была найдена, и иконка корзины для удаления статьи.
+- Роут `/saved-news` защищён HOC-компонентом `ProtectedRoute`.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📹 Демонстрация адаптивности
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![Адаптивность](./public/adaptive.gif)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#
 
-## Learn More
+## 📹 Демонстрация работы поиска
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Адаптивность](./public/search.gif)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#
 
-### Code Splitting
+## 📹 Демонстрация работы личного кабинета
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![Адаптивность](./public/delete.gif)
 
-### Analyzing the Bundle Size
+#
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🧰 Инструменты
 
-### Making a Progressive Web App
+- HTML, CSS
+- Javascript
+- React
+- API
+- БЭМ
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🆕 Будущие обновления
 
-### Advanced Configuration
+- [ ] Переписать код с использованием React
+- [ ] Переписать код на TypeScript
+- [ ] Переписать CSS на Styled Components
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 💻 Установка зависимостей
 
-### Deployment
+##### `yarn` – установить зависимости проекта
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+##### `yarn start` – запуск devServer на http://localhost:3000/
 
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+##### `yarn build` – production сборка проекта
